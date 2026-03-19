@@ -1,10 +1,10 @@
-# Agent Stack Starter Template
+# Kagenti ADK Starter Template
 
-This repository provides a template for creating a Python agent that can be used with the [Agent Stack](https://agentstack.beeai.dev).
+This repository provides a template for creating a Python agent that can be used with the [Kagenti ADK](https://github.com/kagenti/adk).
 
 ## Overview
 
-Agent Stack agents are Python-based services that can be run locally or deployed to Agent Stack. Each agent exposes specific functionality through the [A2A (Agent2Agent Protocol)](https://github.com/a2aproject/A2A) which is implemented via SDK.
+Kagenti ADK agents are Python-based services that can be run locally or deployed to Kagenti ADK. Each agent exposes specific functionality through the [A2A (Agent2Agent Protocol)](https://github.com/a2aproject/A2A) which is implemented via SDK.
 
 In this template, you'll find:
 - A basic agent implementation
@@ -15,7 +15,7 @@ In this template, you'll find:
 
 ```sh
 ├── src/                                    # Source code directory
-│   └── agentstack_agents/                  # Python package directory
+│   └── kagenti_adk_agents/                 # Python package directory
 │       ├── __init__.py                     # Package initialization (empty)
 │       └── agent.py                        # Agent implementations (main file you'll modify)
 ├── Dockerfile                              # Container configuration to build the agent
@@ -32,7 +32,7 @@ In this template, you'll find:
 
 ## Requirements
 
-- [Agent Stack](https://agentstack.beeai.dev/introduction/quickstart) installed
+- [Kagenti ADK](https://github.com/kagenti/adk) installed
 - Python 3.11 or higher
 - [UV package manager](https://docs.astral.sh/uv/) for dependency management
 
@@ -42,7 +42,7 @@ In this template, you'll find:
 
 2. **Install dependencies** using `uv sync`.
 
-3. **Implement your agent** by modifying the source code located in [src/agentstack_agents/agent.py](src/agentstack_agents/agent.py).
+3. **Implement your agent** by modifying the source code located in [src/kagenti_adk_agents/agent.py](src/kagenti_adk_agents/agent.py).
 
 Here's an example of the included template agent:
 
@@ -74,9 +74,9 @@ uv run server
 ```
 
 > [!TIP]
-> If you want the server to auto-restart on code changes, use this command instead:
+> If you want the server to auto-restart on code changes, use this command instead:
 > ```sh
-> uv run watchfiles agentstack_agents.agent.run
+> uv run watchfiles kagenti_adk_agents.agent.run
 > ```
 
 This will start a local http server on http://127.0.0.1:8000 by default. You'll get an output similar to:
@@ -84,41 +84,41 @@ This will start a local http server on http://127.0.0.1:8000 by default. You'll 
 ```
 INFO     | uvicorn.error  | Started server process [83016]
 INFO     | uvicorn.error  | Waiting for application startup.
-INFO     | agentstack_sdk | Registering agent to Agent Stack
+INFO     | kagenti_adk    | Registering agent to Kagenti ADK
 INFO     | uvicorn.error  | Application startup complete.
 INFO     | uvicorn.error  | Uvicorn running on http://127.0.0.1:8000 (Press CTRL+C to quit)
-INFO     | agentstack_sdk | Agent registered successfully
+INFO     | kagenti_adk    | Agent registered successfully
 ```
 
-Your agents should now be started on http://127.0.0.1:8000. You can verify your agents are running with Agent Stack CLI:
+Your agents should now be started on http://127.0.0.1:8000. You can verify your agents are running with Kagenti ADK CLI:
 
 ```sh
 # List available agents
-agentstack list
+kagenti-adk list
 
 # Run the example agent
-agentstack run example_agent "Your Name"
+kagenti-adk run example_agent "Your Name"
 ```
 
-## Adding Agents to Agent Stack
+## Adding Agents to Kagenti ADK
 
-There are two ways to add your agent to Agent Stack:
+There are two ways to add your agent to Kagenti ADK:
 
 ### Local Development Mode
 
-When running agents locally with `uv run server`, they are automatically registered with Agent Stack. In this mode:
-- Agent Stack will communicate with your local server
+When running agents locally with `uv run server`, they are automatically registered with Kagenti ADK. In this mode:
+- Kagenti ADK will communicate with your local server
 - You manage the agent's lifecycle (starting/stopping)
 - Changes are immediately available without redeployment
 
 ### Deployment from GitHub
 
-To share your agent with others or deploy it to Agent Stack:
+To share your agent with others or deploy it to Kagenti ADK:
 
 - Push your agent code to a GitHub repository
-- Add the agent to Agent Stack using: `agentstack add https://github.com/your-username/your-repo-name`
+- Add the agent to Kagenti ADK using: `kagenti-adk add https://github.com/your-username/your-repo-name`
 
-Agent Stack will automatically:
+Kagenti ADK will automatically:
 - Clone your repository
 - Build a Docker image
 - Start the agent container
@@ -128,8 +128,8 @@ Agent Stack will automatically:
 #### Version Management
 
 - For stable versions, use Git tags (e.g., `agents-v0.0.1`)
-- When adding a tagged version: `agentstack add https://github.com/your-username/your-repo-name@agents-v0.0.1`
-- To update: remove the old version (`agentstack remove <agent-name>`) and add the new one
+- When adding a tagged version: `kagenti-adk add https://github.com/your-username/your-repo-name@agents-v0.0.1`
+- To update: remove the old version (`kagenti-adk remove <agent-name>`) and add the new one
 
 ## Troubleshooting
 
@@ -139,11 +139,11 @@ To check the status of your agents:
 
 ```sh
 # List all agents and their status
-agentstack list
+kagenti-adk list
 ```
 
 ### Logs
 
 - **Local agents:** View logs directly in the terminal where you ran `uv run server`
-- **Managed agents:** Use `agentstack logs <agent-id>` to view logs
-- **Agent Stack server logs:** Check `/opt/homebrew/var/log/agentstack-server.log` (default location)
+- **Managed agents:** Use `kagenti-adk logs <agent-id>` to view logs
+- **Kagenti ADK server logs:** Check `/opt/homebrew/var/log/kagenti-adk-server.log` (default location)
